@@ -1,43 +1,51 @@
-<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Fullscreen Video Backgrounds - Demo Page</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
+  <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="<?php echo root_url;?>/data/css/video_styles.css">
+   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap.css">
+   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap-theme.min.css">
+   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap-theme.css">
+   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap-theme.css.map">
+   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap.css.map">
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
+  
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/jquery-1.10.0.min.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/jquery-ui-1.8.22.custom.min.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/jquery.imagesloaded.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/video.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/bigvideo.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/bootstrap.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo root_url;?>/data/js/npm.js"></script>
 
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
+</head>
 
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
-</style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
+<body>
+  <div id="blockcontent" class="col-md-5">
+    <h2>Beautiful Fullscreen Video BGs</h2>
+    <p>All accomplished using the BigVideo.js jQuery plugin.</p>
+    
+    <p>Stock video footage is courtesy of <a href="http://beachfrontprod.blogspot.com/">Beachfront B-Roll</a>.</p>
+  </div>
 
-    <h3>This is your project's main page</h3>
+<script type="text/javascript">
+/**
+ * video source: http://beachfrontprod.blogspot.com/2011/09/random-footage-clip-2.html
+ */
+$(function() {
+  var BV = new $.BigVideo({useFlashForFirefox:false});
+    
+  BV.init();
+  BV.show('<?php echo root_url;?>data/media/rochester-falls.mp4', 
+  {altSource:'<?php echo root_url;?>/data/media/river.ogv', ambient: true});
+});
+</script>
 
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
-    </div>
-</div>
+</body>
+</html>

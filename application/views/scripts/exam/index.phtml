@@ -1,4 +1,64 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Exam</b> and script/action name <b>index</b></p>
+<div class="tabbable-panel">
+    <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+            <li class="active">
+                <a href="#basic_info_tab" data-toggle="tab">
+                    <h4>Exam Basic Info</h4></a>
+            </li>
+            <li>
+                <a href="#questions_tab" data-toggle="tab">
+                    <h4>Exam Questions:</h4> </a>
+            </li>
+            <li>
+                <a href="#analyse_tab" data-toggle="tab">
+                    <h4>Analyse Report</h4> </a>
+            </li>
+
+        </ul>
+        <br/>
+        <div class="tab-content">
+            <div class="tab-pane active" id="basic_info_tab">
+
+
+            </div>
+            <div class="tab-pane active" id="questions_tab">
+                <div class="section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="list-group-item list-group-item-success">Total Questions:32</span>          
+                            </div>
+                        </div>
+                        <br/>
+                        <?php for($i=0;$i<2;$i++){?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/blurry/800x600/7.jpg" class="img-responsive">
+                                <div class="carousel-caption">
+                                    <p><h2>Title</h2></p>
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/blurry/800x600/7.jpg" class="img-responsive">
+                                <div class="carousel-caption">
+                                    <h2>Title</h2>
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                          <br/><br/>
+                        </div>
+                         <br/><br/>
+                        <?php }?>
+                       
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="analyse_tab">
+
+            </div>
+
+        </div>
+    </div>
 </div>

@@ -8,6 +8,8 @@ class UserController extends Zend_Controller_Action {
 
     public function indexAction() {
         // action body
+        $test="this is a test";
+        $this->view->page_name="DashBoard";
     }
 
     public function registerAction() {
@@ -20,6 +22,8 @@ class UserController extends Zend_Controller_Action {
             $password=$request->getParam("password");
             echo $email."\n".$password;
         }
+                $this->view->page_name="Register";
+
     }
 
     public function loginAction() {
@@ -31,6 +35,8 @@ class UserController extends Zend_Controller_Action {
             $password=$request->getParam("password");
             echo $email."\n".$password;
         }
+                        $this->view->page_name="Login";
+
     }
 
 }

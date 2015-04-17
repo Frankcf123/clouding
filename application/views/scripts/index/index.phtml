@@ -1,51 +1,112 @@
 <!doctype html>
 <html lang="en-US">
-<head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  <title>Fullscreen Video Backgrounds - Demo Page</title>
-  <meta name="author" content="Jake Rocheleau">
-  <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
-  <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
-  <link rel="stylesheet" type="text/css" media="all" href="<?php echo root_url;?>/data/css/video_styles.css">
-   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap.css">
-   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap-theme.min.css">
-   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap-theme.css">
-   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap-theme.css.map">
-   <link rel="stylesheet" type="text/css"  href="<?php echo root_url;?>/data/css/bootstrap.css.map">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Fullscreen Video Backgrounds - Demo Page</title>
+        <meta name="author" content="Jake Rocheleau">
+        <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
+        <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo root_url; ?>/data/css/video_styles.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap-theme.css.map">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap.css.map">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/tab.css.map">
 
-  
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/jquery-1.10.0.min.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/jquery-ui-1.8.22.custom.min.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/jquery.imagesloaded.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/video.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/bigvideo.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/bootstrap.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="<?php echo root_url;?>/data/js/npm.js"></script>
 
-</head>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/jquery-ui-1.8.22.custom.min.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/jquery.imagesloaded.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/video.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/bigvideo.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/bootstrap.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/npm.js"></script>
 
-<body>
-  <div id="blockcontent" class="col-md-5">
-    <h2>henfnag  Fullscreen Video BGs</h2>
-    <p>All accomplished using the BigVideo.js jQuery plugin.</p>
-    
-    <p>Stock video footage is courtesy of <a href="http://beachfrontprod.blogspot.com/">Beachfront B-Roll</a>.</p>
-  </div>
+    </head>
 
-<script type="text/javascript">
-/**
- * video source: http://beachfrontprod.blogspot.com/2011/09/random-footage-clip-2.html
- */
-$(function() {
-  var BV = new $.BigVideo({useFlashForFirefox:false});
-    
-  BV.init();
-  BV.show('<?php echo root_url;?>data/media/rochester-falls.mp4', 
-  {altSource:'<?php echo root_url;?>/data/media/river.ogv', ambient: true});
-});
-</script>
+    <body>
+        <div class="container" style="margin-top: 50px">
+            <div id="blockcontent" class=" container">
+                <div class="col-md-12">
+                    <h1 style="text-align: center">Welcome to Exam Monkey</h1>
+                    <br/><br/>
+                    <div class="tabbable-panel">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <li class="active">
+                                    <a href="#tab_default_1" data-toggle="tab">
+                                        <h4>Take An Exam</h4></a>
+                                </li>
+                                <li>
+                                    <a href="#tab_default_2" data-toggle="tab">
+                                        <h4>Set up an Exam</h4> </a>
+                                </li>
 
-</body>
+                            </ul>
+                            <br/><br/>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_default_1">
+
+                                    <div class="form-group">
+                                        <h1 class="text-center text-success">Enter your exam code:</h1>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Exam code">
+                                            <span class="input-group-btn"> <a class="btn btn-success" type="submit">Go</a> </span> 
+                                        </div></div>
+                                </div>
+                                <div class="tab-pane" id="tab_default_2">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <label for="inputEmail3" class="control-label">Email</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <label for="inputPassword3" class="control-label">Password</label></div>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                    <label><a> forgot your password </a></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-default">Sign in</button>
+                                                <button type="submit" class="btn btn-default">Register</button>
+
+                                            </div>
+                                        </div></form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                /**
+                 * video source: http://beachfrontprod.blogspot.com/2011/09/random-footage-clip-2.html
+                 */
+                $(function() {
+                    var BV = new $.BigVideo({useFlashForFirefox: false});
+
+                    BV.init();
+                    BV.show('<?php echo root_url; ?>data/media/rochester-falls.mp4',
+                            {altSource: '<?php echo root_url; ?>/data/media/river.ogv', ambient: true});
+                });
+            </script>
+
+    </body>
 </html>

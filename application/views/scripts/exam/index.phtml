@@ -20,37 +20,91 @@
             <div class="tab-pane active" id="basic_info_tab">
 
 
-            </div>
-            <div class="tab-pane active" id="questions_tab">
-                <div class="section">
+                <div class="jumbotron">  
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <span class="list-group-item list-group-item-success">Total Questions:32</span>          
-                            </div>
+                            <h3 class="text-danger">
+                                <div class="btn-primary col-md-4">Exam Name:</div>
+                                <div class="btn-success col-md-8">Exam 123</div>
+
+                                <hr>  <hr>
+                                <div class="btn-primary col-md-4">Exam Duration(mins):</div>
+                                <div class="btn-success col-md-8">32</div>
+                                <hr>  <hr>
+                                <div class="btn-primary col-md-4">Exam Status</div>
+                                <div class="btn-success col-md-8">Private</div>
+                                <hr>  <hr>
+                                <div class="btn-primary col-md-4">Exam Code</div>
+                                <div class="btn-success col-md-8">Not Available</div>
+                            </h3>
                         </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--exam questions-->
+            <div class="tab-pane " id="questions_tab">
+                <div class="section">
+                    <div class="container">
+                        <!--                        <div class="row">
+                                                    <div class="col-md-12">
+                                                        <span><h2>Questions:&nbsp;&nbsp;<select>
+                                                                    <option>1</option>
+                                                                                                                <option>2</option>
+                                                                    <option>3</option>
+                        
+                                                                </select><br/></h2></span>
+                        
+                                                       
+                                                    </div>
+                                                </div>-->
                         <br/>
-                        <?php for($i=0;$i<2;$i++){?>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/blurry/800x600/7.jpg" class="img-responsive">
-                                <div class="carousel-caption">
-                                    <p><h2>Title</h2></p>
-                                    <p>Description</p>
+                        <div class="tabbable-panel">
+                            <div class="tabbable-line">
+
+                                <div class="tab-content">
+                                    <?php for ($i = 0; $i < 2; $i++) { ?>
+                                        <div class="tab-pane <?php
+                                        if ($i == 0) {
+
+                                            echo "active";
+                                        }
+                                        ?>" id="page<?php echo $i + 1; ?>">
+
+                                            <div class="row">
+                                             
+                                                <div class="col-md-12">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item list-group-item-success">
+                                                            <h4><?php echo $i; ?>. whAT IS FOYDSOUF ADHSFA,SDJFHKASDHF ASKDJ
+                                                            </h4></li>
+                                                        <li class="list-group-item">
+                                                            A. COMPUTER IS ONE OF THE BEST INVENTATION IN THIS WORLD</li>
+                                                        <li class="list-group-item">
+                                                            A. COMPUTER IS ONE OF THE BEST INVENTATION IN THIS WORLD</li>
+                                                        <li class="list-group-item">
+                                                            A. COMPUTER IS ONE OF THE BEST INVENTATION IN THIS WORLD</li>
+                                                        <li class="list-group-item">
+                                                            A. COMPUTER IS ONE OF THE BEST INVENTATION IN THIS WORLD</li>
+                                                        <li class="list-group-item">
+                                                            <i class="fa fa-3x fa-fw fa-edit"></i>
+                                                            <i class="fa fa-3x fa-fw fa-remove"></i>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/blurry/800x600/7.jpg" class="img-responsive">
-                                <div class="carousel-caption">
-                                    <h2>Title</h2>
-                                    <p>Description</p>
-                                </div>
-                            </div>
-                          <br/><br/>
-                        </div>
-                         <br/><br/>
-                        <?php }?>
-                       
+
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#page1" data-toggle="tab">1</a></li>
+                                    <li><a href="#page2" data-toggle="tab">2</a></li>
+                                </ul>
+                            </div></div>
                     </div>
                 </div>
 

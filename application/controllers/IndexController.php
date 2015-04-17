@@ -11,9 +11,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-                $this->render("header");
-                $this->render("index");
-
+            
     }
 
     public function examCodeCheckAction()

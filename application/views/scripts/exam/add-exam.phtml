@@ -1,0 +1,48 @@
+
+        <br/>
+        <div class="tab-content">
+            <form method="POST" action="" name="editQuestionForm">
+                <?php for ($i = 0; $i < 20; $i++) { ?>
+                    <div class="tab-pane <?php
+                    if ($i == 0) {
+
+                        echo "active";
+                    }
+                    ?>" id="question<?php echo $i + 1; ?>">
+
+                        <input type="hidden" name="id_<?php echo $i + 1; ?>" >
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-success">
+                                        <h4>Q<?php echo $i + 1; ?>
+                                            <textarea cols="50" name="question_<?php echo $i + 1; ?>"></textarea>
+                                        </h4></li>
+                                    <li class="list-group-item">
+                                        A. 
+                                          <textarea cols="50" name="answerA_<?php echo $i + 1; ?>"></textarea>
+
+                                    </li>
+                                    <li class="list-group-item">
+                                        B.
+                                          <textarea cols="50" name="answerB_<?php echo $i + 1; ?>"></textarea>
+                                    </li>
+                                    <li class="list-group-item">
+                                        C. 
+                                          <textarea cols="50" name="answerC_<?php echo $i + 1; ?>"></textarea>
+                                    </li>
+                                    <li class="list-group-item">
+                                        D. 
+                                          <textarea cols="50" name="answerD_<?php echo $i + 1; ?>"></textarea>
+                                    </li>
+                                  
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <input type="submit" class="col-md-10 btn btn-primary" value="submit"/>
+            </form>
+        </div>

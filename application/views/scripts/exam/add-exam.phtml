@@ -1,48 +1,70 @@
 
-        <br/>
-        <div class="tab-content">
-            <form method="POST" action="" name="editQuestionForm">
-                <?php for ($i = 0; $i < 20; $i++) { ?>
-                    <div class="tab-pane <?php
-                    if ($i == 0) {
+<br/>
+<div class="tab-content">
+    <div class="col-md-12">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="warning"><strong>Exam Name:</strong></td>
+                    <td class="warning"><?php echo $this->exam_name?></td>
+                </tr>
+                <tr>
+                    <td class="info"><strong>Exam Duration</strong></td>
+                    <td class="info"><?php echo $this->exam_duration?></td>
+                </tr>
+                <tr>
+                    <td class="warning"><strong>Total Questions</strong></td>
+                    <td class="warning"><?php echo $this->exam_no?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form method="POST" action="" name="editQuestionForm">
+        <input type="hidden" name="exam_name" id="exam_name" value="<?php echo $this->exam_name?>">
+                <input type="hidden" name="exam_duration" id="exam_duration" value="<?php echo $this->exam_duration?>">
+        <input type="hidden" name="exam_no" id="exam_no" value="<?php echo $this->exam_no?>">
 
-                        echo "active";
-                    }
-                    ?>" id="question<?php echo $i + 1; ?>">
+        <?php for ($i = 0; $i < 20; $i++) { ?>
+            <div class="tab-pane <?php
+            if ($i == 0) {
 
-                        <input type="hidden" name="id_<?php echo $i + 1; ?>" >
-                        <div class="row">
+                echo "active";
+            }
+            ?>" id="question<?php echo $i + 1; ?>">
 
-                            <div class="col-md-12">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">
-                                        <h4>Q<?php echo $i + 1; ?>
-                                            <textarea cols="50" name="question_<?php echo $i + 1; ?>"></textarea>
-                                        </h4></li>
-                                    <li class="list-group-item">
-                                        A. 
-                                          <textarea cols="50" name="answerA_<?php echo $i + 1; ?>"></textarea>
+                <input type="hidden" name="id_<?php echo $i + 1; ?>" >
+                <div class="row">
 
-                                    </li>
-                                    <li class="list-group-item">
-                                        B.
-                                          <textarea cols="50" name="answerB_<?php echo $i + 1; ?>"></textarea>
-                                    </li>
-                                    <li class="list-group-item">
-                                        C. 
-                                          <textarea cols="50" name="answerC_<?php echo $i + 1; ?>"></textarea>
-                                    </li>
-                                    <li class="list-group-item">
-                                        D. 
-                                          <textarea cols="50" name="answerD_<?php echo $i + 1; ?>"></textarea>
-                                    </li>
-                                  
-                                </ul>
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-success">
+                                <h4>Q<?php echo $i + 1; ?>
+                                    <textarea cols="50" name="question_<?php echo $i + 1; ?>"></textarea>
+                                </h4></li>
+                            <li class="list-group-item">
+                                A. 
+                                <textarea cols="50" name="answerA_<?php echo $i + 1; ?>"></textarea>
 
-                            </div>
-                        </div>
+                            </li>
+                            <li class="list-group-item">
+                                B.
+                                <textarea cols="50" name="answerB_<?php echo $i + 1; ?>"></textarea>
+                            </li>
+                            <li class="list-group-item">
+                                C. 
+                                <textarea cols="50" name="answerC_<?php echo $i + 1; ?>"></textarea>
+                            </li>
+                            <li class="list-group-item">
+                                D. 
+                                <textarea cols="50" name="answerD_<?php echo $i + 1; ?>"></textarea>
+                            </li>
+
+                        </ul>
+
                     </div>
-                <?php } ?>
-                <input type="submit" class="col-md-10 btn btn-primary" value="submit"/>
-            </form>
-        </div>
+                </div>
+            </div>
+        <?php } ?>
+        <input type="submit" class="col-md-10 btn btn-primary" value="submit"/>
+    </form>
+</div>

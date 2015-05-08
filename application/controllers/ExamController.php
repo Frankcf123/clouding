@@ -39,7 +39,20 @@ class ExamController extends Zend_Controller_Action {
             $exam_name = $request->getParam("exam_name");
             $exam_no = $request->getParam("exam_no");
             $exam_duration = $request->getParam("exam_duration");
-}
+            $questions_arr=array();
+            for ($i = 0; $i < $exam_no; $i++) {
+                $question = $request->getParam("question_" . $i);
+                $answerA = $request->getParam("answerA_" . $i);
+                $answerB = $request->getParam("answerA_" . $i);
+                $answerC = $request->getParam("answerA_" . $i);
+                $answerD = $request->getParam("answerA_" . $i);
+                $questions_arr[$i]=array(
+                    "question"=>$question,
+                    "answerA"=>$answerA,"answerB"=>$answerB,
+                    "answerC"=>$answerC,"answerD"=>$answerD
+                );
+            }
+        }
     }
 
 }

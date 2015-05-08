@@ -12,8 +12,11 @@ class UserController extends Zend_Controller_Action {
             $this->_redirect(root_url . '/index/index');
         }
 
+        $auth = Zend_Auth::getInstance()->getStorage()->read();
+        $userInfo = Zend_Auth::getInstance()->getStorage()->read();
         $test = "this is a test";
         $this->view->page_name = "DashBoard";
+        $this->view->username = $userInfo->username;
     }
 
     public function registerAction() {
@@ -29,7 +32,6 @@ class UserController extends Zend_Controller_Action {
             $auth = Zend_Auth::getInstance();
             $result = $auth->authenticate($authAdapter);
             $table = new Application_Model_User();
-
             //logiin authen
             if ($username == "wrong" && $password == "wrong") {
                 $this->view->register_error = "You must fill out all the fields";
@@ -43,14 +45,14 @@ class UserController extends Zend_Controller_Action {
                 ));
                 $this->view->register_error = "";
                 //write idenntity
-                $loginAdapter = $this->getLoginAuthAdapter();
-                $loginAdapter->setIdentity($username)->setCredential($username);
-                $auth2 = Zend_Auth::getInstance();
-                $identity = $loginAdapter->getResultRowobject();
-                $authStorage = $auth2->getStorage();
-                $authStorage->write($identity);
+//                $loginAdapter = $this->getLoginAuthAdapter();
+//                $loginAdapter->setIdentity($username)->setCredential($password);
+//                $auth2 = Zend_Auth::getInstance();
+//                $identity = $loginAdapter->getResultRowobject();
+//                $authStorage = $auth2->getStorage();
+//                $authStorage->write($identity);
 
-                $this->_redirect(root_url . '/user/index');
+                $this->_redirect(root_url . '/user/regsuccess');
             }
         }
         $this->view->page_name = "Register";
@@ -58,6 +60,8 @@ class UserController extends Zend_Controller_Action {
 
     public function logoutAction() {
         // action body
+        Zend_Auth::getInstance()->clearIdentity();
+        $this->redirect(root_url.'/index/index');
     }
 
     private function getAuthAdapter() {
@@ -70,6 +74,10 @@ class UserController extends Zend_Controller_Action {
         $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
         $authAdapter->setTableName('user')->setIdentityColumn("username")->setCredentialColumn("password");
         return $authAdapter;
+    }
+
+    public function regsuccessAction() {
+        // action body
     }
 
 }

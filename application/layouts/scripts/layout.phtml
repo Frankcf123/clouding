@@ -43,12 +43,14 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                         <ul class="nav navbar-nav navbar-right">
+                            <?php if(isset($this->username)){?>
                             <li class="active">
-                                <a href="#">Hello ,admin</a>
+                                <a href="#">Hello ,<?php echo $this->username;?></a>
                             </li>
                             <li>
-                                <a href="#">Logout</a>
+                                <a href="<?php echo root_url.'/user/logout'?>">Logout</a>
                             </li>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>

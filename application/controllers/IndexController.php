@@ -10,7 +10,6 @@ class IndexController extends Zend_Controller_Action {
         // action body
         $this->_helper->layout->disableLayout();
         if (Zend_Auth::getInstance()->hasIdentity()) {
-//            $this->_redirect('index/index');
         }
 
         $request = $this->getRequest();

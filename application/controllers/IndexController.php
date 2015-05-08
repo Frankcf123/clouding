@@ -16,10 +16,10 @@ class IndexController extends Zend_Controller_Action {
         $request=$this->getRequest();
         if($request->isPost()){
                 $authAdapter=$this->getAuthAdapter();
-                $username=$this->getRequest()->getParam("username");
+                $username=(null !=$this->getRequest()->getParam("username"))?$this->getRequest()->getParam("username"):"wrong";
 
-                $password=$this->getRequest()->getParam("password");
-
+                $password=  (null !=$this->getRequest()->getParam("password"))?$this->getRequest()->getParam("password"):"wrong";
+                
                 $authAdapter->setIdentity($username)->setCredential($password);
                 $auth=Zend_Auth::getInstance();
                 $result=$auth->authenticate($authAdapter);

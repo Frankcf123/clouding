@@ -8,6 +8,10 @@ class UserController extends Zend_Controller_Action {
 
     public function indexAction() {
         // action body
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect(root_url . '/index/index');
+        }
+
         $test = "this is a test";
         $this->view->page_name = "DashBoard";
     }
@@ -21,27 +25,32 @@ class UserController extends Zend_Controller_Action {
             $authAdapter = $this->getAuthAdapter();
             $username = (null != $this->getRequest()->getParam("username")) ? $this->getRequest()->getParam("username") : "wrong";
             $password = (null != $this->getRequest()->getParam("password")) ? $this->getRequest()->getParam("password") : "wrong";
-            $authAdapter->setIdentity("frankcf329")->setCredential("frankcf329");
+            $authAdapter->setIdentity($username)->setCredential($username);
             $auth = Zend_Auth::getInstance();
             $result = $auth->authenticate($authAdapter);
             $table = new Application_Model_User();
 
+            //logiin authen
             if ($username == "wrong" && $password == "wrong") {
                 $this->view->register_error = "You must fill out all the fields";
-            } 
-//            elseif ($table->checkUnique($username) || $username == "wrong") {
-//                $identity = $authAdapter->getResultRowobject();
-//                $authStorage = $auth->getStorage();
-//                $authStorage->write($identity);
-//                $this->view->register_error = "The username may already be taken";
-//            }
-            else {
+            } elseif ($result->isValid() || $username == "wrong") {
+                $this->view->register_error = "The username may already be taken";
+            } else {
                 //process to register and write to database
                 $table->insertdb(array(
                     "username" => $username,
                     "password" => $password
                 ));
                 $this->view->register_error = "";
+                //write idenntity
+                $loginAdapter = $this->getLoginAuthAdapter();
+                $loginAdapter->setIdentity($username)->setCredential($username);
+                $auth2 = Zend_Auth::getInstance();
+                $identity = $loginAdapter->getResultRowobject();
+                $authStorage = $auth2->getStorage();
+                $authStorage->write($identity);
+
+                $this->_redirect(root_url . '/user/index');
             }
         }
         $this->view->page_name = "Register";
@@ -54,6 +63,12 @@ class UserController extends Zend_Controller_Action {
     private function getAuthAdapter() {
         $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
         $authAdapter->setTableName('user')->setIdentityColumn("username")->setCredentialColumn("username");
+        return $authAdapter;
+    }
+
+    private function getLoginAuthAdapter() {
+        $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
+        $authAdapter->setTableName('user')->setIdentityColumn("username")->setCredentialColumn("password");
         return $authAdapter;
     }
 

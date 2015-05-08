@@ -26,11 +26,12 @@ class IndexController extends Zend_Controller_Action {
                 $authStorage = $auth->getStorage();
                 $authStorage->write($identity);
                 $this->view->login_error = "";
+                $this->_redirect(root_url . '/user/index');
             } else {
                 if ($username == "wrong" || $password == "wrong") {
-                     $this->view->login_error = "You must fill all the fields";
+                    $this->view->login_error = "You must fill all the fields";
                 } else {
-                    $this->view->login_error = "Wrong email or password";
+                    $this->view->login_error = "Wrong em1ail or password";
                 }
             }
         }

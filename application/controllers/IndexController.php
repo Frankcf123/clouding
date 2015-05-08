@@ -17,9 +17,7 @@ class IndexController extends Zend_Controller_Action {
         if ($request->isPost()) {
             $authAdapter = $this->getAuthAdapter();
             $username = (null != $this->getRequest()->getParam("username")) ? $this->getRequest()->getParam("username") : "wrong";
-
             $password = (null != $this->getRequest()->getParam("password")) ? $this->getRequest()->getParam("password") : "wrong";
-
             $authAdapter->setIdentity($username)->setCredential($password);
             $auth = Zend_Auth::getInstance();
             $result = $auth->authenticate($authAdapter);
@@ -30,11 +28,9 @@ class IndexController extends Zend_Controller_Action {
                 $this->view->login_error = "";
             } else {
                 if ($username == "wrong" || $password == "wrong") {
-                                        $this->view->login_error = "You must fill all the fields";
-
+                     $this->view->login_error = "You must fill all the fields";
                 } else {
                     $this->view->login_error = "Wrong email or password";
-
                 }
             }
         }

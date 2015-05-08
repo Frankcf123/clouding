@@ -89,30 +89,35 @@
                                           action="" method="POST">
                                         <div class="form-group" >
                                             <div class="col-sm-2">
-                                                <label for="inputEmail3" class="control-label">Email</label>
+                                                <label for="username" class="control-label">Email</label>
                                             </div>
                                             <div class="col-sm-10">
-                                                <input type="username" name="username" class="form-control" id="username" placeholder="Email">
+                                                <input type="text" name="username" class="form-control" id="username" placeholder="Username">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-2">
-                                                <label for="inputPassword3" class="control-label">Password</label></div>
+                                                <label for="password" class="control-label">Password</label></div>
                                             <div class="col-sm-10">
                                                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <label style="color:red"><?php if(isset($this->login_error)){
-                                                    echo $this->login_error;
-                                                }?></label>
+                                                <label style="color:red"><?php
+                                                    if (isset($this->login_error)) {
+                                                        echo $this->login_error;
+                                                    }
+                                                    ?></label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-default">Sign in</button>
-                                                <buttton type="submit" class="btn btn-default btn-primary">Register</button>
+                                                <button type="submit" class="col-md-3 btn-success btn btn-default">Sign in</button>
+                                                <a href="<?php echo root_url . '/user/register' ?>">
+                                                    <buttton  class="col-md-3 col-md-offset-1 btn btn-default btn-primary">
+                                                        Register
+                                                    </button></a>
 
                                             </div>
                                         </div>

@@ -38,4 +38,12 @@ class Application_Model_Exam extends Zend_Db_Table_Abstract {
         return $rows[0];
     }
 
+    public function ChangeStatus($exam_name, $status) {
+        $data = array(
+            'status' => $status
+        );
+        $where = $this->getAdapter()->quoteInto('exam_name = ?', $exam_name);
+        $this->update($data, $where);
+    }
+
 }

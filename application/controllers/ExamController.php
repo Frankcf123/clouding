@@ -9,16 +9,12 @@ class ExamController extends Zend_Controller_Action
 
     public function init()
     {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect(root_url . '/index/index');
-        }
-
-        $_username = Zend_Auth::getInstance()->getStorage()->read()->username;
-        $this->view->username = $_username;
+      
     }
 
     public function indexAction()
     {
+        $this->checkIdentity();
         $exam_name = $_POST['exam_name'];
         //get the exam information
         $exam_table = new Application_Model_Exam();
@@ -36,6 +32,8 @@ class ExamController extends Zend_Controller_Action
 
     public function addExamAction()
     {
+                $this->checkIdentity();
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $exam_name = $request->getParam("exam_name");
@@ -51,11 +49,14 @@ class ExamController extends Zend_Controller_Action
 
     public function addBasicInfoAction()
     {
-        
+                $this->checkIdentity();
+
     }
 
     public function finishEditAction()
     {
+                $this->checkIdentity();
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $exam_name = $request->getParam("exam_name");
@@ -97,6 +98,7 @@ class ExamController extends Zend_Controller_Action
 
     public function downloadPaperAction()
     {
+                $this->checkIdentity();
         $this->_helper->layout->disableLayout();
         $model = new Application_Model_PdfGenerate();
         $model->generate_exam($_POST['exam_name']);
@@ -105,6 +107,8 @@ class ExamController extends Zend_Controller_Action
     public function downloadReportAction()
     {
         // action body
+                $this->checkIdentity();
+
     }
 
     public function startExamAction()
@@ -129,6 +133,14 @@ class ExamController extends Zend_Controller_Action
         // action body
     }
 
+    private function checkIdentity(){
+          if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect(root_url . '/index/index');
+        }
+
+        $_username = Zend_Auth::getInstance()->getStorage()->read()->username;
+        $this->view->username = $_username;
+    }
 
 }
 

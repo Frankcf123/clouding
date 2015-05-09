@@ -29,7 +29,14 @@
                     <input type="hidden" name="exam_name" value="<?php echo $rows['exam_name']; ?>">
                     <input type="submit" value="show Details" class="btn btn-success">
                 </form></td>
-                <td><button class="btn btn-primary">change the status</button></td>
+            <td>
+                <form action="" method="POST">
+                    <input type="hidden" name="exam_name" value="<?php echo $rows['exam_name']; ?>">
+                    <input type="hidden" name="status" value="<?php echo $rows['status']; ?>">
+                    <input type="submit" value="change the status" class="btn btn-primary">
+                </form>
+            </td>
+
             <?php
             echo "</tr>";
         }

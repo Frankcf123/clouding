@@ -4,21 +4,28 @@ class UserController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
-      
     }
 
     public function indexAction() {
         // action body
-          if (!Zend_Auth::getInstance()->hasIdentity()) {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect(root_url . '/index/index');
         }
         $username = Zend_Auth::getInstance()->getStorage()->read()->username;
         $this->view->page_name = "DashBoard";
         $this->view->username = $username;
-           $username = Zend_Auth::getInstance()->getStorage()->read()->username;
-           $table=new Application_Model_Exam();
-           $rows=$table->getAllExams($username);
-           $this->view->exams=$rows;
+        $username = Zend_Auth::getInstance()->getStorage()->read()->username;
+        $table = new Application_Model_Exam();
+        $rows = $table->getAllExams($username);
+        $this->view->exams = $rows;
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $exam_name = $this->getRequest()->getParam("exam_name");
+            $status = ($this->getRequest()->getParam("status")=="private")?"private":"public";
+            $model=new Application_Model_Exam();
+            $model->ChangeStatus($exam_name, $status);
+        }
     }
 
     public function registerAction() {
@@ -56,7 +63,7 @@ class UserController extends Zend_Controller_Action {
     public function logoutAction() {
         // action body
         Zend_Auth::getInstance()->clearIdentity();
-        $this->redirect(root_url.'/index/index');
+        $this->redirect(root_url . '/index/index');
     }
 
     private function getAuthAdapter() {
@@ -74,6 +81,5 @@ class UserController extends Zend_Controller_Action {
     public function regsuccessAction() {
         // action body
     }
-  
-    
+
 }

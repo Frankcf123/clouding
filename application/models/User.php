@@ -15,13 +15,5 @@ class Application_Model_User extends Zend_Db_Table_Abstract {
         
     }
     
-//    function checkUnique($username){
-//        $rows = $this->find(array("username", 'username'));
-//        if(count($rows)==0){
-//            return TRUE;
-//        }else{
-//            return FALSE;
-//        }
-//    }
-
+    
 }

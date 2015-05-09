@@ -4,19 +4,20 @@ class UserController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect(root_url . '/index/index');
+        }
+        $username = Zend_Auth::getInstance()->getStorage()->read()->username;
+        $this->view->page_name = "DashBoard";
+        $this->view->username = $username;
     }
 
     public function indexAction() {
         // action body
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect(root_url . '/index/index');
-        }
-
-        $auth = Zend_Auth::getInstance()->getStorage()->read();
-        $userInfo = Zend_Auth::getInstance()->getStorage()->read();
-        $test = "this is a test";
-        $this->view->page_name = "DashBoard";
-        $this->view->username = $userInfo->username;
+           $username = Zend_Auth::getInstance()->getStorage()->read()->username;
+           $table=new Application_Model_Exam();
+           $rows=$table->getAllExams($username);
+           $this->view->exams=$rows;
     }
 
     public function registerAction() {
@@ -44,13 +45,6 @@ class UserController extends Zend_Controller_Action {
                     "password" => $password
                 ));
                 $this->view->register_error = "";
-                //write idenntity
-//                $loginAdapter = $this->getLoginAuthAdapter();
-//                $loginAdapter->setIdentity($username)->setCredential($password);
-//                $auth2 = Zend_Auth::getInstance();
-//                $identity = $loginAdapter->getResultRowobject();
-//                $authStorage = $auth2->getStorage();
-//                $authStorage->write($identity);
 
                 $this->_redirect(root_url . '/user/regsuccess');
             }
@@ -79,5 +73,6 @@ class UserController extends Zend_Controller_Action {
     public function regsuccessAction() {
         // action body
     }
-
+  
+    
 }

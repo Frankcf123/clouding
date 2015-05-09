@@ -11,6 +11,15 @@ class UserController extends Zend_Controller_Action {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect(root_url . '/index/index');
         }
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $exam_name = $this->getRequest()->getParam("exam_name");
+            $status = ($this->getRequest()->getParam("status") == "private") ? "public" : "private";
+            $model = new Application_Model_Exam();
+            $model->ChangeStatus($exam_name, $status);
+        }
+
         $username = Zend_Auth::getInstance()->getStorage()->read()->username;
         $this->view->page_name = "DashBoard";
         $this->view->username = $username;
@@ -18,14 +27,6 @@ class UserController extends Zend_Controller_Action {
         $table = new Application_Model_Exam();
         $rows = $table->getAllExams($username);
         $this->view->exams = $rows;
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $exam_name = $this->getRequest()->getParam("exam_name");
-            $status = ($this->getRequest()->getParam("status")=="private")?"private":"public";
-            $model=new Application_Model_Exam();
-            $model->ChangeStatus($exam_name, $status);
-        }
     }
 
     public function registerAction() {

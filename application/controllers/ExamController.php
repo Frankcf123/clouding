@@ -1,5 +1,5 @@
 <?php
-include_once '../clouding/data/fpdf/fpdf.php';
+
 //require "../clouding/data/fpdf/fpdf.php";
 //define("TEM", "")
 class ExamController extends Zend_Controller_Action {
@@ -57,9 +57,9 @@ class ExamController extends Zend_Controller_Action {
             for ($i = 0; $i < $exam_no; $i++) {
                 $title = $request->getParam("title_" . $i);
                 $answerA = $request->getParam("answerA_" . $i);
-                $answerB = $request->getParam("answerA_" . $i);
-                $answerC = $request->getParam("answerA_" . $i);
-                $answerD = $request->getParam("answerA_" . $i);
+                $answerB = $request->getParam("answerB_" . $i);
+                $answerC = $request->getParam("answerC_" . $i);
+                $answerD = $request->getParam("answerD_" . $i);
                 $result = $request->getParam("result_" . $i);
                 $data = array(
                     'exam_name' => $exam_name,
@@ -87,13 +87,9 @@ class ExamController extends Zend_Controller_Action {
     }
 
     public function downloadPaperAction() {
-                $this->_helper->layout->disableLayout();
-
-       $pdf=new FPDF();
-       $pdf->AddPage();
-       $pdf->setFont("Arial","B","20");
-       $pdf->Cell(0,10,"this is a test");
-       $pdf->Output();
+        $this->_helper->layout->disableLayout();
+        $model = new Application_Model_PdfGenerate();
+        $model->generate_exam($_POST['exam_name']);
     }
 
     public function downloadReportAction() {

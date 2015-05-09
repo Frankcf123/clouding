@@ -95,7 +95,7 @@
                                                 </div>
                                             </div>
                                         </div>
-<?php } ?>
+                                    <?php } ?>
                                 </div>
 
 
@@ -108,10 +108,16 @@
 
             </div>
             <div class="tab-pane" id="advanced_tab">
-                <a href="<?php echo root_url.'/exam/download-paper'?>">
-                    <button class="btn btn-primary btn-lg">download the exam paper</button></a>
-                  <a href="<?php echo root_url.'/exam/download-report'?>">
-                      <button class="btn btn-primary btn-lg">download the analyse report</button></a>
+                <form action="<?php echo root_url . '/exam/download-paper' ?>" method="POST">
+                    <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name']; ?>">
+                    <input type="submit" class="btn btn-primary btn-lg" value="download the exam paper">
+                </form>
+                <br/>
+                <form action="<?php echo root_url . '/exam/download-report' ?>" method="POST">
+                    <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name']; ?>">
+                    <input type="submit" class="btn btn-primary btn-lg" value="download the analyse report">
+                </form>
+
             </div>
         </div>
     </div>

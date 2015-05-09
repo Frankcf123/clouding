@@ -4,16 +4,17 @@ class UserController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
+      
+    }
+
+    public function indexAction() {
+        // action body
+          if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect(root_url . '/index/index');
         }
         $username = Zend_Auth::getInstance()->getStorage()->read()->username;
         $this->view->page_name = "DashBoard";
         $this->view->username = $username;
-    }
-
-    public function indexAction() {
-        // action body
            $username = Zend_Auth::getInstance()->getStorage()->read()->username;
            $table=new Application_Model_Exam();
            $rows=$table->getAllExams($username);

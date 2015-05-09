@@ -124,7 +124,14 @@ class ExamController extends Zend_Controller_Action
         $this->view->page_name = $info_rows['exam_name'];
     }
 
+    public function finishExamAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 

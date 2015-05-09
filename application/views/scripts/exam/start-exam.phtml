@@ -1,8 +1,77 @@
-   
-<div class="container">
-    <form method="POST" action="">
+<script type="text/javascript">
+    var c = 0;
+    var count = true;
+    var t;
+
+    function timedCount()
+    {
+        //hidden the button and disply stop button
+        document.getElementById('exam_content').hidden = false;
+        document.getElementById('start').hidden = true;
+//		document.getElementById('stop').hidden = false;
+
+        var text = document.getElementById('exam_duration').value;
+        var timer = text.split(":");
+        var min = parseInt(timer[0]);
+        var sec = parseInt(timer[1]);
+
+        if (sec == 0) {
+            if (min > 0) {
+                min--;
+                sec = 59;
+            } else {
+                count = false;
+                document.getElementById("exam_form").submit();
+
+//                alert("Time up!");
+            }
+        } else {
+            sec--;
+        }
+
+
+        if (sec < 10) {
+            sec = "0" + sec
+        }
+        if (min < 10) {
+            min = "0" + min
+        }
+
+        document.getElementById('timer').innerHTML = min + ":" + sec;
+        document.getElementById('exam_duration').value = min + ":" + sec;
+        c++;
+        if (count)
+        {
+            t = setTimeout(function() {
+                timedCount()
+            }, 1000);
+            ;
+        }
+    }
+
+    function stopCount()
+    {
+//		alert("You have used " + c +"s");
+//                document.getElementById('exam_duration').value=min+":"+sec;
+        document.getElementById("exam_form").submit();
+        clearTimeout(t);
+    }
+</script>
+<div >
+    <h3 >
+        <label class="col-md-5 btn-default">Times Remaining(mm:ss):</label>
+        <label class="col-md-3 btn-default" id="timer"><?php echo $this->basic_info['duration']; ?></label>
+        <input type="button" class="btn-success" id="start" value="Start Exam Now!" onClick="timedCount()">
+    </h3>
+</div>
+
+
+<div class="container" id="exam_content" hidden>
+    <hr>
+    <form method="POST" action="<?php echo root_url . '/exam/finish-exam'; ?>" name="exam_form" id="exam_form">
         <input type="hidden" name="total_question" value="<?php echo $this->basic_info['total_question'] ?>">
         <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name'] ?>">
+        <input type="hidden" id="exam_duration" name="exam_duration" value="<?php echo $this->basic_info['duration']; ?>">
 
         <div class="tabbable-panel">
             <div class="tabbable-line">
@@ -66,7 +135,7 @@
                     <?php } ?>
                 </div>
             </div>
-            <input class="btn btn-default btn-block" type="submit">
+            <input class="btn btn-default btn-block" type="submit" onclick="stopCount()">
         </div>
     </form>
 </div>

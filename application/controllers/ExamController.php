@@ -2,9 +2,13 @@
 
 //require "../clouding/data/fpdf/fpdf.php";
 //define("TEM", "")
-class ExamController extends Zend_Controller_Action {
+include "indexController.php";
 
-    public function init() {
+class ExamController extends Zend_Controller_Action
+{
+
+    public function init()
+    {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect(root_url . '/index/index');
         }
@@ -13,7 +17,8 @@ class ExamController extends Zend_Controller_Action {
         $this->view->username = $_username;
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $exam_name = $_POST['exam_name'];
         //get the exam information
         $exam_table = new Application_Model_Exam();
@@ -29,7 +34,8 @@ class ExamController extends Zend_Controller_Action {
         $this->view->page_name = "Exam Info";
     }
 
-    public function addExamAction() {
+    public function addExamAction()
+    {
         $request = $this->getRequest();
         if ($request->isPost()) {
             $exam_name = $request->getParam("exam_name");
@@ -40,13 +46,16 @@ class ExamController extends Zend_Controller_Action {
             $this->view->exam_duration = $exam_duration;
         }
         $this->view->page_name = "Add exam page";
+        return;
     }
 
-    public function addBasicInfoAction() {
+    public function addBasicInfoAction()
+    {
         
     }
 
-    public function finishEditAction() {
+    public function finishEditAction()
+    {
         $request = $this->getRequest();
         if ($request->isPost()) {
             $exam_name = $request->getParam("exam_name");
@@ -86,14 +95,36 @@ class ExamController extends Zend_Controller_Action {
         $this->redirect(root_url . "/user/index");
     }
 
-    public function downloadPaperAction() {
+    public function downloadPaperAction()
+    {
         $this->_helper->layout->disableLayout();
         $model = new Application_Model_PdfGenerate();
         $model->generate_exam($_POST['exam_name']);
     }
 
-    public function downloadReportAction() {
+    public function downloadReportAction()
+    {
         // action body
     }
 
+    public function startExamAction()
+    {
+          $exam_code = $_POST['code'];
+        //get the exam information
+        $exam_table = new Application_Model_Exam();
+        $info_rows = $exam_table->getInfoOfExamByCode($exam_code);
+        $this->view->basic_info = $info_rows;
+
+        //get all the questions
+        $questions_table = new Application_Model_Question();
+        $questions_rows = $questions_table->getQuestionsByExamName($info_rows['exam_name']);
+        $this->view->questions = $questions_rows;
+
+        //set the title
+        $this->view->page_name = $info_rows['exam_name'];
+    }
+
+
 }
+
+

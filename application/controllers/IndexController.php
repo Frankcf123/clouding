@@ -50,5 +50,12 @@ class IndexController extends Zend_Controller_Action {
         $authAdapter->setTableName('user')->setIdentityColumn("username")->setCredentialColumn("password");
         return $authAdapter;
     }
+    
+    
+    private function getExamAdapter() {
+        $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
+        $authAdapter->setTableName('exam')->setIdentityColumn("code")->setCredentialColumn("code");
+        return $authAdapter;
+    }
 
 }

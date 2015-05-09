@@ -32,4 +32,10 @@ class Application_Model_Exam extends Zend_Db_Table_Abstract {
         return $rows[0];
     }
 
+    public function getInfoOfExamByCode($code) {
+        $select = $this->select()->where('code = ?', $code);
+        $rows = $this->fetchAll($select);
+        return $rows[0];
+    }
+
 }

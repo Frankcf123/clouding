@@ -7,7 +7,8 @@
                 <th>Exam Name</th>
                 <th>Status</th>
                 <th>Exam code</th>
-                <th>Make it</th>
+                <th>Details</th>
+                <th>Change the status</th>
 
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                     <input type="hidden" name="exam_name" value="<?php echo $rows['exam_name']; ?>">
                     <input type="submit" value="show Details" class="btn btn-success">
                 </form></td>
+                <td><button class="btn btn-primary">change the status</button></td>
             <?php
             echo "</tr>";
         }

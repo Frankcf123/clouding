@@ -1,5 +1,7 @@
 <?php
-
+include_once '../clouding/data/fpdf/fpdf.php';
+//require "../clouding/data/fpdf/fpdf.php";
+//define("TEM", "")
 class ExamController extends Zend_Controller_Action {
 
     public function init() {
@@ -82,6 +84,20 @@ class ExamController extends Zend_Controller_Action {
             ));
         }
         $this->redirect(root_url . "/user/index");
+    }
+
+    public function downloadPaperAction() {
+                $this->_helper->layout->disableLayout();
+
+       $pdf=new FPDF();
+       $pdf->AddPage();
+       $pdf->setFont("Arial","B","20");
+       $pdf->Cell(0,10,"this is a test");
+       $pdf->Output();
+    }
+
+    public function downloadReportAction() {
+        // action body
     }
 
 }

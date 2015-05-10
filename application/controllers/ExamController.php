@@ -113,19 +113,7 @@ class ExamController extends Zend_Controller_Action
 
     public function startExamAction()
     {
-          $exam_code = $_POST['code'];
-        //get the exam information
-        $exam_table = new Application_Model_Exam();
-        $info_rows = $exam_table->getInfoOfExamByCode($exam_code);
-        $this->view->basic_info = $info_rows;
-
-        //get all the questions
-        $questions_table = new Application_Model_Question();
-        $questions_rows = $questions_table->getQuestionsByExamName($info_rows['exam_name']);
-        $this->view->questions = $questions_rows;
-
-        //set the title
-        $this->view->page_name = $info_rows['exam_name'];
+          
     }
 
     public function finishExamAction()

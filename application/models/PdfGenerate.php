@@ -21,7 +21,7 @@ class Application_Model_PdfGenerate {
 //           $pdf->SetTitle("test");
         $pdf->SetFont('Arial', 'B', 10);
         // Move to the right
-        $pdf->Cell(80);
+        $pdf->Cell(60);
         // Title
         $pdf->Cell(100, 10, $title_text, 1, 0, 'C');
         // Line break
@@ -29,13 +29,23 @@ class Application_Model_PdfGenerate {
 
         foreach ($questions_rows as $questions) {
             $question_text = ($questions['exam_question_id'] + 1) . "." . $questions['title'];
+           
+            $pdf->Cell(30);
             $pdf->Cell(0, 5, $question_text, 3, 1);
+     
+            $pdf->Cell(30);
             $answer_A = "A ." . $questions['A'];
             $pdf->Cell(0, 5, $answer_A, 3, 1);
-            $answer_B = "B ." . $questions['B'];
+            
+            $pdf->Cell(30);
+            $answer_B = "B ." . $questions['B'];            
             $pdf->Cell(0, 5, $answer_B, 3, 1);
+                        
+            $pdf->Cell(30);
             $answer_C = "C ." . $questions['C'];
             $pdf->Cell(0, 5, $answer_C, 3, 1);
+            
+            $pdf->Cell(30);
             $answer_D = "D ." . $questions['D'];
             $pdf->Cell(0, 5, $answer_D, 3, 1);
             $pdf->Cell(0, 10, "", 3, 1);

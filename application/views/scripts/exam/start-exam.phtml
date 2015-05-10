@@ -72,6 +72,7 @@
         <input type="hidden" name="total_question" value="<?php echo $this->basic_info['total_question'] ?>">
         <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name'] ?>">
         <input type="hidden" id="exam_duration" name="exam_duration" value="<?php echo $this->basic_info['duration']; ?>">
+        <input type="hidden" id="possible_duration" name="possible_duration" value="<?php echo $this->basic_info['duration']; ?>">
 
         <div class="tabbable-panel">
             <div class="tabbable-line">
@@ -89,7 +90,7 @@
                         <div class="col-md-12 row">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <label><input type="radio" name="rank" value="Hard"> 
+                                    <label><input type="radio" name="rank" value="Hard" checked> 
                                         Difficult</label>
                                 </li>
                                 <li class="list-group-item">
@@ -101,10 +102,10 @@
                                         Easy</label>
                                 </li>
                                 <li class="list-group-item">
-                                    <label><input type="text" name="student_name" placeholder="Please Enter your name"> 
-                                        </label>
+                                    <label><input type="text" name="student_name" placeholder="Please Enter your name" > 
+                                    </label>
                                 </li>
-                               
+
                         </div>
                     </div>
                     <?php for ($i = 0; $i < $this->basic_info['total_question']; $i++) { ?>
@@ -120,17 +121,20 @@
                                         <h4><?php echo ($i + 1) . "." . $this->questions[$i]['title']; ?>
                                         </h4></li>
                                     <li class="list-group-item">
-                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="<?php echo $this->questions[$i]['A']; ?>"> 
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="A"> 
                                             A. <?php echo $this->questions[$i]['A']; ?></label> </li>
                                     <li class="list-group-item">
-                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="<?php echo $this->questions[$i]['B']; ?>"> 
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="B"> 
                                             B. <?php echo $this->questions[$i]['B']; ?></label> </li>
                                     <li class="list-group-item">
-                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="<?php echo $this->questions[$i]['C']; ?>"> 
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="C"> 
                                             C. <?php echo $this->questions[$i]['C']; ?></label> </li>
                                     <li class="list-group-item">
-                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="<?php echo $this->questions[$i]['D']; ?>"> 
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="D"> 
                                             D. <?php echo $this->questions[$i]['D']; ?></label> </li>
+                                    <li class="list-group-item">
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="F" checked> 
+                                            F.I have no idea</label> </li>
 
                                 </ul>
 

@@ -4,16 +4,13 @@
 //define("TEM", "")
 include "indexController.php";
 
-class ExamController extends Zend_Controller_Action
-{
+class ExamController extends Zend_Controller_Action {
 
-    public function init()
-    {
-      
+    public function init() {
+        
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         $this->checkIdentity();
         $exam_name = $_POST['exam_name'];
         //get the exam information
@@ -30,9 +27,8 @@ class ExamController extends Zend_Controller_Action
         $this->view->page_name = "Exam Info";
     }
 
-    public function addExamAction()
-    {
-                $this->checkIdentity();
+    public function addExamAction() {
+        $this->checkIdentity();
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -47,15 +43,12 @@ class ExamController extends Zend_Controller_Action
         return;
     }
 
-    public function addBasicInfoAction()
-    {
-                $this->checkIdentity();
-
+    public function addBasicInfoAction() {
+        $this->checkIdentity();
     }
 
-    public function finishEditAction()
-    {
-                $this->checkIdentity();
+    public function finishEditAction() {
+        $this->checkIdentity();
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -96,44 +89,83 @@ class ExamController extends Zend_Controller_Action
         $this->redirect(root_url . "/user/index");
     }
 
-    public function downloadPaperAction()
-    {
-                $this->checkIdentity();
+    public function downloadPaperAction() {
+        $this->checkIdentity();
         $this->_helper->layout->disableLayout();
         $model = new Application_Model_PdfGenerate();
         $model->generate_exam($_POST['exam_name']);
     }
 
-    public function downloadReportAction()
-    {
+    public function downloadReportAction() {
         // action body
-                $this->checkIdentity();
-
+        $this->checkIdentity();
     }
 
-    public function startExamAction()
-    {
-          
+    public function startExamAction() {
+        
     }
 
-    public function finishExamAction()
-    {
+    public function finishExamAction() {
         $request = $this->getRequest();
         if ($request->isPost()) {
             $exam_name = $request->getParam("exam_name");
             $total_question = $request->getParam("total_question");
             $exam_duration = $request->getParam("exam_duration");
-            $rank=$request->getParam("rank");
-            $student_name=$request->getParam("student_name");
-            
-            for($i=0;$i<$total_question;$i++){
-                $answer=$this->getParam("answer_".$i);
+            $possible_duration = $request->getParam('possible_duration');
+            $rank = $request->getParam("rank");
+            $student_name = ($request->getParam("student_name") != null ? $request->getParam("student_name") : "anonymity");
+            $answerArr = array();
+            for ($i = 0; $i < $total_question; $i++) {
+                $answerArr[$i] = $this->getParam("answer_" . $i);
             }
+            $model = new Application_Model_Question();
+            $mark = $model->checkAnswers($exam_name, $answerArr);
+
+            $examiner_model = new Application_Model_Examiner();
+            $data = array(
+                'examiner_name' => $student_name,
+                'exam_name' => $exam_name,
+                'rank' => $rank,
+                'possible_mark' => $total_question,
+                'mark' => $mark,
+                'duration' => $this->getUsedTime($possible_duration, $exam_duration),
+                'possible_duration' => $possible_duration
+            );
+            $examiner_model->insertdb($data);
+            $dataOut = array(
+                "exam_name" => $exam_name,
+                "duration" => $this->getUsedTime($possible_duration, $exam_duration),
+                "mark" => $mark . "/" . $total_question,
+                "comment"=>$this->getComment($total_question, $mark)
+            );
+            $this->view->data=$dataOut;
+            $this->view->page_name="Your Exam Result";
         }
     }
 
-    private function checkIdentity(){
-          if (!Zend_Auth::getInstance()->hasIdentity()) {
+    private function getComment($total, $mark) {
+        switch ($mark) {
+            case ($mark > $total * 0.8):return "Excellent !!";
+            case ($mark > $total * 0.7):return "Good Job!!";
+            case ($mark > $total * 0.6):return "You need to work more harder!!";
+            case ($mark > $total * 0.4):return "Just pass the exam,but you may not be so lucky next time!";
+            default :return "You fail the exam, you may need to contact your tutor for advice!!";
+        }
+    }
+
+    private function getUsedTime($total, $left) {
+        $total_arr = explode(":", $total);
+        $left_arr = explode(":", $left);
+        $time_total = $total_arr[0] * 60 + $total_arr[1] - $left_arr[0] * 60 - $left_arr[1];
+        $time1 = (round($time_total / 60) < 10) ? ("0" . round($time_total / 60)) : round($time_total / 60);
+        $time2 = (round($time_total % 60) < 10) ? ("0" . round($time_total % 60)) : round($time_total % 60);
+
+        $output = $time1 . ":" . $time2;
+        return $output;
+    }
+
+    private function checkIdentity() {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect(root_url . '/index/index');
         }
 
@@ -142,7 +174,3 @@ class ExamController extends Zend_Controller_Action
     }
 
 }
-
-
-
-

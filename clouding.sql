@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: May 10, 2015 at 04:13 PM
+-- Generation Time: May 10, 2015 at 06:12 PM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -47,6 +47,38 @@ INSERT INTO `exam` (`id`, `username`, `total_question`, `duration`, `status`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `examiner`
+--
+
+CREATE TABLE `examiner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `examiner_name` varchar(175) DEFAULT 'anonymity',
+  `exam_name` varchar(175) NOT NULL,
+  `rank` varchar(145) NOT NULL,
+  `possible_mark` int(11) NOT NULL,
+  `mark` int(11) NOT NULL,
+  `duration` varchar(175) NOT NULL,
+  `possible_duration` varchar(175) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+--
+-- Dumping data for table `examiner`
+--
+
+INSERT INTO `examiner` (`id`, `examiner_name`, `exam_name`, `rank`, `possible_mark`, `mark`, `duration`, `possible_duration`) VALUES
+(15, 'anonymity', 'testexam', 'Hard', 2, 0, '0:3', '00:20'),
+(16, 'anonymity', 'testexam', 'Hard', 2, 0, '00:03', '00:20'),
+(17, 'anonymity', 'testexam', 'Hard', 2, 0, '00:02', '00:20'),
+(18, 'anonymity', 'testexam', 'Hard', 2, 0, '00:02', '00:20'),
+(19, 'anonymity', 'testexam', 'Hard', 2, 0, '00:02', '00:20'),
+(20, 'anonymity', 'testexam', 'Hard', 2, 0, '00:02', '00:20'),
+(21, 'anonymity', 'testexam', 'Medium', 2, 1, '00:07', '00:20'),
+(22, 'anonymity', 'testexam', 'Medium', 2, 1, '00:07', '00:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `question`
 --
 
@@ -60,6 +92,8 @@ CREATE TABLE `question` (
   `D` varchar(275) NOT NULL,
   `result` varchar(45) NOT NULL,
   `exam_name` varchar(175) NOT NULL,
+  `correct_num` int(11) NOT NULL DEFAULT '0',
+  `wrong_num` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
@@ -67,9 +101,9 @@ CREATE TABLE `question` (
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`id`, `exam_question_id`, `title`, `A`, `B`, `C`, `D`, `result`, `exam_name`) VALUES
-(23, 0, 'testtitle', '1asdsa', '1asdsa', '1asdsa', '1asdsa', 'C', 'testexam'),
-(24, 1, 'testeam3', 'das', 'das', 'das', 'das', 'A', 'testexam');
+INSERT INTO `question` (`id`, `exam_question_id`, `title`, `A`, `B`, `C`, `D`, `result`, `exam_name`, `correct_num`, `wrong_num`) VALUES
+(23, 0, 'testtitle', '1asdsa', '1asdsa', '1asdsa', '1asdsa', 'C', 'testexam', 0, 34),
+(24, 1, 'testeam3', 'das', 'das', 'das', 'das', 'A', 'testexam', 20, 14);
 
 -- --------------------------------------------------------
 

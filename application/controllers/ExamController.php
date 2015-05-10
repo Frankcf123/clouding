@@ -118,7 +118,18 @@ class ExamController extends Zend_Controller_Action
 
     public function finishExamAction()
     {
-        // action body
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $exam_name = $request->getParam("exam_name");
+            $total_question = $request->getParam("total_question");
+            $exam_duration = $request->getParam("exam_duration");
+            $rank=$request->getParam("rank");
+            $student_name=$request->getParam("student_name");
+            
+            for($i=0;$i<$total_question;$i++){
+                $answer=$this->getParam("answer_".$i);
+            }
+        }
     }
 
     private function checkIdentity(){

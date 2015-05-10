@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: May 10, 2015 at 03:20 AM
+-- Generation Time: May 10, 2015 at 04:13 PM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -42,7 +42,7 @@ CREATE TABLE `exam` (
 --
 
 INSERT INTO `exam` (`id`, `username`, `total_question`, `duration`, `status`, `code`, `exam_name`) VALUES
-(13, 'frankcf329', 2, '00:20', 'private', 'frccQFbb6FwzI', 'testexam');
+(13, 'frankcf329', 2, '00:20', 'public', 'frccQFbb6FwzI', 'testexam');
 
 -- --------------------------------------------------------
 

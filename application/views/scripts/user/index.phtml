@@ -9,6 +9,7 @@
                 <th>Exam code</th>
                 <th>Details</th>
                 <th>Change the status</th>
+                <th>Share On twitter</th>
 
             </tr>
         </thead>
@@ -35,6 +36,12 @@
                     <input type="hidden" name="status" value="<?php echo $rows['status']; ?>">
                     <input type="submit" value="change the status" class="btn btn-primary">
                 </form>
+            </td>
+            <td>
+                <a 
+                    href="http://twitter.com/share?text=<?php echo "I have a created an exam on the website, please use the code to start the exam(code:". $rows['code'].")";?>">
+                <i class="fa fa-3x fa-fw fa-twitter text-inverse"></i>
+                </a>
             </td>
 
             <?php

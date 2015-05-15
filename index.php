@@ -8,7 +8,7 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
-define('root_url','http://localhost/clouding');
+define('root_url','../');
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),

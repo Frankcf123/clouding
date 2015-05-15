@@ -16,7 +16,7 @@ class Application_Model_PdfGenerate {
         $pdf->AddPage();
 
         //set up title
-        $pdf->Image('http://www.elroubio.net/wp-content/themes/diary/images/ele1.jpg', 10, 6, 30);
+        $pdf->Image('https://s3-ap-southeast-2.amazonaws.com/cloudingrmit/data/media/logo.png', 10, 6, 30);
         // Arial bold 15
 //           $pdf->SetTitle("test");
         $pdf->SetFont('Arial', 'B', 10);

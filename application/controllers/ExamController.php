@@ -23,6 +23,13 @@ class ExamController extends Zend_Controller_Action {
         $questions_rows = $questions_table->getQuestionsByExamName($exam_name);
         $this->view->questions = $questions_rows;
 
+        //get all analysis report
+        $examier_table = new Application_Model_Examiner();
+        $mark_report_info = $examier_table->getAnalysisMark($exam_name);
+        $this->view->mark_analysis = $mark_report_info;
+
+        $duration_report_info = $examier_table->getAnalysisDuration($exam_name);
+        $this->view->duration_analysis = $duration_report_info;
         //set the title
         $this->view->page_name = "Exam Info";
     }
@@ -99,6 +106,9 @@ class ExamController extends Zend_Controller_Action {
     public function downloadReportAction() {
         // action body
         $this->checkIdentity();
+//        $this->_helper->layout->disableLayout();
+//        $model = new Application_Model_PdfGenerate();
+//        $model->generate_exam($_POST['exam_name']);
     }
 
     public function startExamAction() {
@@ -136,10 +146,10 @@ class ExamController extends Zend_Controller_Action {
                 "exam_name" => $exam_name,
                 "duration" => $this->getUsedTime($possible_duration, $exam_duration),
                 "mark" => $mark . "/" . $total_question,
-                "comment"=>$this->getComment($total_question, $mark)
+                "comment" => $this->getComment($total_question, $mark)
             );
-            $this->view->data=$dataOut;
-            $this->view->page_name="Your Exam Result";
+            $this->view->data = $dataOut;
+            $this->view->page_name = "Your Exam Result";
         }
     }
 
